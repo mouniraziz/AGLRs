@@ -1,6 +1,6 @@
 ### This is a PyTorch implementation of the paper: [Learn to aggregate global and local representations for few-shot learning](https://link.springer.com/article/10.1007/s11042-023-14413-1)
 
-![ScreenShot](/images/framework.png)
+![ScreenShot](/images/framework.PNG)
 
 ## Requirements
 
