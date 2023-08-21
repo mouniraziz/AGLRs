@@ -153,7 +153,7 @@ class Conv_64F(nn.Module):
             nn.LeakyReLU(0.2, True),
         )
 
-        self.classifier = GLD_Metric(neighbor_k=neighbor_k, batch_size=batch_size, shot_num=shot_num)  # 1*num_classes
+        self.classifier = AGLRs_Metric(neighbor_k=neighbor_k, batch_size=batch_size, shot_num=shot_num)  # 1*num_classes
 
     def forward(self, input1, input2):
 
@@ -174,9 +174,9 @@ class Conv_64F(nn.Module):
 
 
 # ========================== Define MML ==========================#
-class GLD_Metric(nn.Module):
+class AGLRs_Metric(nn.Module):
     def __init__(self, num_classes=5, neighbor_k=3, batch_size=4, shot_num=1):
-        super(GLD_Metric, self).__init__()
+        super(AGLRs_Metric, self).__init__()
         self.neighbor_k = neighbor_k
         self.batch_size = batch_size
         self.shot_num = shot_num
@@ -250,7 +250,7 @@ class GLD_Metric(nn.Module):
 
         return   innerproduct_matrix
 
-    def cal_GLD_similarity(self, input1_batch, input2_batch):
+    def call_AGLRs_similarity(self, input1_batch, input2_batch):
 
         Similarity_list = []
         input1_batch = input1_batch.contiguous().view(self.batch_size, -1, input1_batch.size(1),
@@ -295,6 +295,6 @@ class GLD_Metric(nn.Module):
 
     def forward(self, x1, x2):
 
-        Similarity_list = self.cal_GLD_similarity(x1, x2)
+        Similarity_list = self.call_AGLRs_similarity(x1, x2)
 
         return Similarity_list
