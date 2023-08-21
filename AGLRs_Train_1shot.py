@@ -31,7 +31,7 @@ import dataset.few_shot_dataloader as FewShotDataloader
 from models import network_GLD_1shot
 import utils
 
-model_dict = dict(GLD1=network_GLD_1shot)
+model_dict = dict(AGLRs1=network_AGLRs_1shot)
 # ==================================================================================
 
 
@@ -43,8 +43,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_dir', default='/home/data/miniImageNet', help='./miniImageNet')
 parser.add_argument('--data_name', default='miniImageNet', help='miniImageNet | CUB | StanfordDog | StanfordCar')
 parser.add_argument('--mode', default='train', help='train|val|test')
-parser.add_argument('--outf', default='./results/miniImageNet_GLD_1shot/')
-parser.add_argument('--resume', default='./results/miniImageNet_GLD_1shot/BatchSize_4_Conv64F_miniImageNet_5Way_1Shot/model_best_test.pth.tar', type=str, help='path to the lastest checkpoint (default: none)')
+parser.add_argument('--outf', default='./results/miniImageNet_AGLRs_1shot/')
+parser.add_argument('--resume', default='./results/miniImageNet_AGLRs_1shot/BatchSize_4_Conv64F_miniImageNet_5Way_1Shot/model_best_test.pth.tar', type=str, help='path to the lastest checkpoint (default: none)')
 parser.add_argument('--basemodel', default='Conv64F', help='Conv64F')
 parser.add_argument('--workers', type=int, default=8)
 parser.add_argument('--imageSize', type=int, default=84)
@@ -240,7 +240,7 @@ if __name__ == '__main__':
     epoch_index = 0
 
     
-    FewShotNet = model_dict["GLD1"]
+    FewShotNet = model_dict["AGLRs1"]
     model = FewShotNet.define_FewShotNet(which_model=opt.basemodel, num_classes=opt.way_num, neighbor_k=opt.neighbor_k,
                                          norm='batch',
                                          shot_num=opt.shot_num, batch_size=opt.episodeSize, init_type='normal',
