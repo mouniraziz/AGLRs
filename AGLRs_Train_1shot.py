@@ -28,7 +28,7 @@ sys.dont_write_bytecode = True
 
 # ============================ Data & Networks =====================================
 import dataset.few_shot_dataloader as FewShotDataloader
-from models import network_GLD_1shot
+from models import network_AGLRs_1shot
 import utils
 
 model_dict = dict(AGLRs1=network_AGLRs_1shot)
